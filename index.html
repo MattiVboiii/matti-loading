@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="titlediv">
+        <h1>Welcome to [SERVER]</h1>
+        <p><b>Click</b> and press <b>Spacebar</b> to start/stop the music</p>
+    </div>
+    <div class="menus">
+        <div class="menu-left">
+            <h1 class="menu-left-title">Staff</h1>
+            <ul class="menu-left-list">
+                <li class="menu-left-item">
+                    <img src="https://cdn.discordapp.com/attachments/951491980762947607/1192903411537027162/pfp_2.1.png?ex=66eb2160&is=66e9cfe0&hm=954df1876ed9dd7f70eda123364e376917c0e09f1c390d5533e676e848377ff6&" alt="">
+                    <p><strong>OWNER | </strong><i>MattiVboiii</i></p>
+                </li>
+                <li class="menu-left-item">
+                    <img src="https://placehold.co/100x100" alt="">
+                    <p><strong>Head Developer | </strong><i>[NAME]</i></p>
+                </li>
+                <li class="menu-left-item">
+                    <img src="https://placehold.co/100x100" alt="">
+                    <p><strong>Developer | </strong><i>[NAME]</i></p>
+                </li>
+                <li class="menu-left-item">
+                    <img src="https://placehold.co/100x100" alt="">
+                    <p><strong>Staff | </strong><i>[NAME]</i></p>
+                </li>
+                <li class="menu-left-item">
+                    <img src="https://placehold.co/100x100" alt="">
+                    <p><strong>Trial Staff | </strong><i>[NAME]</i></p>
+                </li>
+                <li class="menu-left-item">
+                    <img src="https://placehold.co/100x100" alt="">
+                    <p><strong>Trial Staff | </strong><i>[NAME]</i></p>
+                </li>
+                <li class="menu-left-item">
+                    <img src="https://placehold.co/100x100" alt="">
+                    <p><strong>Trial Staff | </strong><i>[NAME]</i></p>
+                </li>
+                <!-- MAXIMUM AMOUNT -->
+            </ul>
+        </div>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="menu-right">
+            <h1 class="menu-right-title">Rules</h1>
+            <ol class="menu-right-list">
+                <li class="menu-right-item">Behave and stay in RP</li>
+                <li class="menu-right-item">Respect anyone</li>
+                <li class="menu-right-item">Reports are made in Discord</li>
+                <li class="menu-right-item">blablabla</li>
+                <li class="menu-right-item">blablabla</li>
+            </ol>
+        </div>
+    </div>
+    <audio id="leson" src="music.mp3" autoplay="true" hidden="true" loop="true"></audio>
+    <script>
+        var play = true;
+        var myAudio = document.getElementById("leson");
+
+        myAudio.volume = 0.1;
+
+        function onKeyDown(event) {
+            switch (event.keyCode) {
+                case 32: //SpaceBar                    
+                    if (play) {
+                        myAudio.pause();
+                        play = false;
+                    } else {
+                        myAudio.play();
+                        play = true;
+                    }
+                    break;
+            }
+            return false;
+        }
+
+        window.addEventListener("keydown", onKeyDown, false);
+    </script>
+</body>
+
+</html>
