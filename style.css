@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
+:root { /*  HSL colors: check https://g.co/kgs/m1accyG to simply change the values */
+    --base-hue: 348; /* "H" value: Adjust the base hue (0 for red, 120 for green, 240 for blue) */
+    --saturation: 83%; /* "S" value */
+    --lightness: 47%; /* "L" value */
+}
+
 body {
-    background-color: black;
-    background-image: url('background.png');
-    background-size: cover;
     color: white;
     font-family: "Noto Sans", sans-serif;
     margin: 0;
@@ -13,15 +16,28 @@ body {
     overflow: hidden;
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('background.png');
+    background-size: cover;
+    z-index: -1; 
+    filter: hue-rotate(calc(var(--base-hue) * 1deg));
+}
+
 .titlediv h1 {
     text-align: center;
-    font-size: 3rem;
-    margin-top: 1rem;
+    font-size: 4rem;
+    margin: 3rem 0 0;
 }
 
 .titlediv p {
     text-align: center;
-    margin-bottom: 5rem;
+    margin: 0 0 5rem;
     font-size: 1rem;
 }
 
@@ -34,14 +50,16 @@ body {
     max-width: 2000px;
     max-height: 1000px;
     margin: auto;
-    opacity: 0; 
+    opacity: 0;
     animation: fadeIn 2s ease-in-out forwards;
 }
 
 .menu-left,
 .menu-right {
-    border: 3px solid #dc143c;
-    box-shadow: 0 0 20px #dc143c, inset 0 0 75px #dc143c;
+    border: 3px solid hsl(var(--base-hue), var(--saturation), var(--lightness));
+    box-shadow: 0 0 20px hsl(var(--base-hue), var(--saturation), calc(var(--lightness))),
+        inset 0 0 75px hsl(var(--base-hue), var(--saturation), calc(var(--lightness)));
+    /* background-color: rgba(23, 23, 23, 70%); Recommended to uncomment if using video*/ 
     flex: 1;
     padding: 0 20px;
     border-radius: 1rem;
@@ -52,8 +70,8 @@ body {
     text-align: center;
     font-size: 2.5rem;
     margin: 0;
-    padding: 2rem;
-    border-bottom: 2px solid #dc143c;
+    padding: 1.5rem;
+    border-bottom: 2px solid hsl(var(--base-hue), var(--saturation), calc(var(--lightness)));
 }
 
 .menu-left-list,
@@ -76,12 +94,12 @@ body {
 }
 
 .menu-left-item img {
-    border-radius: 10rem;
-    border: 3px solid #dc143c;
+    border-radius: 100%;
+    border: 3px solid hsl(var(--base-hue), var(--saturation), var(--lightness));
+    box-shadow: 0 0 20px hsl(var(--base-hue), var(--saturation), var(--lightness));
     width: 100px;
 }
 
-/* New logo styles */
 .logo {
     position: absolute;
     left: 50%;
@@ -91,11 +109,24 @@ body {
 }
 
 .logo img {
-    width: 200px; 
-    height: 200px;
+    width: 250px;
+    height: 250px;
     background-color: black;
-    border: 3px solid #dc143c;
-    border-radius: 100px;
+    border: 3px solid hsl(var(--base-hue), var(--saturation), var(--lightness));
+    box-shadow: 0 0 50px hsl(var(--base-hue), var(--saturation), var(--lightness));
+    border-radius: 100%;
+}
+
+.video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
 }
 
 @keyframes fadeIn {
@@ -103,6 +134,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
