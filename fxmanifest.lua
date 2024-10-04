@@ -3,7 +3,7 @@ games { 'gta5' }
 
 author 'MattiVboiii'
 description 'Simple & basic loadingscreen script'
-version '1.0.0'
+version '1.0.1'
 
 loadscreen 'index.html'
 loadscreen_manual_shutdown 'yes'
