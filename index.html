@@ -1,115 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading</title>
+    <link rel="preload" href="logo.png" as="image" fetchpriority="high" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
-    <title>Matti-Loadingscreen</title>
   </head>
-
   <body>
-    <!-- <video autoplay muted loop class="video" src="video.mp4" type="video/mp4"></video> -->
-    <div class="titlediv">
-      <h1>Welcome to [SERVER]</h1>
-      <p><b>Click</b> and press <b>Spacebar</b> to start/stop the music</p>
-    </div>
-    <div class="menus">
-      <div class="menu-left">
-        <h1 class="menu-left-title">Staff</h1>
-        <ul class="menu-left-list">
-          <li class="menu-left-item">
-            <img
-              src="https://cdn.discordapp.com/attachments/951491980762947607/1192903411537027162/pfp_2.1.png?ex=66eb2160&is=66e9cfe0&hm=954df1876ed9dd7f70eda123364e376917c0e09f1c390d5533e676e848377ff6&"
-              alt="my own pic lol"
+    <div id="bg-image" class="bg-image" aria-hidden="true" hidden></div>
+    <video
+      id="bg-video"
+      class="bg-video"
+      muted
+      loop
+      playsinline
+      preload="none"
+      hidden
+    ></video>
+    <div class="bg-glows" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <main class="stage">
+      <header class="hero">
+        <p class="eyebrow" id="tagline">Welcome</p>
+        <h1 class="server-name" id="server-name">Server</h1>
+        <p class="discord" id="discord-link" hidden></p>
+      </header>
+
+      <div class="layout">
+        <aside class="panel panel-staff" aria-label="Staff">
+          <h2 class="panel-title">Staff</h2>
+          <ul id="staff-list" class="staff-list"></ul>
+        </aside>
+
+        <div class="logo-wrap">
+          <div class="logo-ring" aria-hidden="true"></div>
+          <img
+            class="logo"
+            src="logo.png"
+            alt="Server logo"
+            width="256"
+            height="256"
+            fetchpriority="high"
+            decoding="sync"
+          />
+        </div>
+
+        <aside class="panel panel-rules" aria-label="Rules">
+          <h2 class="panel-title">Rules</h2>
+          <ol id="rules-list" class="rules-list"></ol>
+        </aside>
+      </div>
+
+      <footer class="dock">
+        <p class="tip is-visible" id="tip-text">Loading…</p>
+
+        <div
+          class="progress"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
+          <div class="progress-meta">
+            <span id="progress-status">Connecting…</span>
+            <span id="progress-percent">0%</span>
+          </div>
+          <div class="progress-track">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="music-controls" id="music-controls">
+          <button
+            type="button"
+            id="mute-btn"
+            class="mute-btn"
+            aria-pressed="false"
+            title="Mute music"
+          >
+            <svg
+              class="icon-playing"
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.74 2.5-2.26 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+              />
+            </svg>
+            <svg
+              class="icon-muted"
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                d="M16.5 12c0-1.77-1-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"
+              />
+            </svg>
+          </button>
+          <div class="volume-wrap">
+            <input
+              id="volume-slider"
+              class="volume-slider"
+              type="range"
+              min="0"
+              max="100"
+              value="12"
+              aria-label="Music volume"
             />
-            <p><strong>OWNER | </strong><i>MattiVboiii</i></p>
-          </li>
-          <li class="menu-left-item">
-            <img src="https://placehold.co/100x100" alt="placeholder 100x100" />
-            <p><strong>Head Developer | </strong><i>[NAME]</i></p>
-          </li>
-          <li class="menu-left-item">
-            <img src="https://placehold.co/100x100" alt="placeholder 100x100" />
-            <p><strong>Developer | </strong><i>[NAME]</i></p>
-          </li>
-          <li class="menu-left-item">
-            <img src="https://placehold.co/100x100" alt="placeholder 100x100" />
-            <p><strong>Staff | </strong><i>[NAME]</i></p>
-          </li>
-          <li class="menu-left-item">
-            <img src="https://placehold.co/100x100" alt="placeholder 100x100" />
-            <p><strong>Trial Staff | </strong><i>[NAME]</i></p>
-          </li>
-          <li class="menu-left-item">
-            <img src="https://placehold.co/100x100" alt="placeholder 100x100" />
-            <p><strong>Trial Staff | </strong><i>[NAME]</i></p>
-          </li>
-          <!-- MAXIMUM AMOUNT (of img's) -->
-        </ul>
-      </div>
-      <div class="logo">
-        <img src="logo.png" alt="Logo" />
-      </div>
-      <div class="menu-right">
-        <h1 class="menu-right-title">Rules</h1>
-        <ol class="menu-right-list">
-          <li class="menu-right-item">Behave and stay in RP</li>
-          <li class="menu-right-item">Respect anyone</li>
-          <li class="menu-right-item">Reports are made in Discord</li>
-          <li class="menu-right-item">blablabla</li>
-          <li class="menu-right-item">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-            nemo earum provident obcaecati ipsa quisquam a esse, recusandae
-            eaque sint sit sed qui est deleniti, saepe blanditiis, vero commodi?
-            Consequuntur?
-          </li>
-          <li class="menu-right-item">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-            nemo earum provident obcaecati ipsa quisquam a esse, recusandae
-            eaque sint sit sed qui est deleniti, saepe blanditiis, vero commodi?
-            Consequuntur?
-          </li>
-          <li class="menu-right-item">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-            nemo earum provident obcaecati ipsa quisquam a esse, recusandae
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga sed
-            eius numquam accusamus soluta maxime eos, est inventore magni!
-            Quidem cumque sint vitae, vero aliquid obcaecati doloremque
-            exercitationem impedit voluptas.
-          </li>
-          <!-- MAXIMUM AMOUNT (of words) -->
-        </ol>
-      </div>
-    </div>
-    <audio
-      id="leson"
-      src="music.mp3"
-      autoplay="true"
-      hidden="true"
-      loop="true"
-    ></audio>
-    <script>
-      var play = true;
-      var myAudio = document.getElementById("leson");
+          </div>
+          <span class="music-hint" id="music-hint">Playing</span>
+        </div>
+      </footer>
+    </main>
 
-      myAudio.volume = 0.1;
-
-      function onKeyDown(event) {
-        switch (event.keyCode) {
-          case 32: //SpaceBar
-            if (play) {
-              myAudio.pause();
-              play = false;
-            } else {
-              myAudio.play();
-              play = true;
-            }
-            break;
-        }
-        return false;
-      }
-
-      window.addEventListener("keydown", onKeyDown, false);
-    </script>
+    <audio id="loading-audio" preload="auto" loop></audio>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
